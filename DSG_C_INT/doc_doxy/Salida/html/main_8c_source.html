@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>GDS_Interrupciones: Archivo de código fuente C:/Users/anita/Downloads/DIG3_3/DIG3_3/GDS_C_INT/signal_gen/main.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo udea.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">GDS_Interrupciones<span id="projectnumber">&#160;1</span>
+   </div>
+   <div id="projectbrief">GeneradorSeñales</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">C:/Users/anita/Downloads/DIG3_3/DIG3_3/GDS_C_INT/signal_gen/main.c</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="main_8c.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &quot;pico/stdlib.h&quot;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &quot;hardware/gpio.h&quot;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &lt;math.h&gt;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#include &lt;ctype.h&gt;</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="main_8c.html#add56dedbc09f82766e39588e01978e7d">   42</a></span><span class="preprocessor">#define DEBOUNCE_MS 200 </span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="main_8c.html#a67a5f231b52df2f8cc2af35609cbd376">   43</a></span><span class="preprocessor">#define AMPLITUDE_MIN 100.0 </span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="main_8c.html#a225ca4481cc8bc065f82db955b3058ef">   44</a></span><span class="preprocessor">#define AMPLITUDE_MAX 2500.0 </span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="main_8c.html#aab1126a23f72e0d2b7e271f19ee330ba">   45</a></span><span class="preprocessor">#define FREQUENCY_MIN 1 </span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="main_8c.html#a723455414fa26047e35c5e96c09ccf0c">   46</a></span><span class="preprocessor">#define FREQUENCY_MAX 12000000 </span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="main_8c.html#a41ef69195f41271a871d6b5935767b1d">   47</a></span><span class="preprocessor">#define DAC_MAX_VALUE 255 </span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="main_8c.html#a2c9e85d22a9ba37ea589b1747af46307">   48</a></span><span class="preprocessor">#define VREF 3.3 </span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="main_8c.html#ae71449b1cc6e6250b91f539153a7a0d3">   49</a></span><span class="preprocessor">#define M_PI 3.141592 </span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="main_8c.html#a3cfd3aa62338d12609f6d65bce97e9cd">   50</a></span><span class="preprocessor">#define ROWS 4 </span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="main_8c.html#ab59ad2ee1a48b83c2eef1f019ed8cc48">   51</a></span><span class="preprocessor">#define COLS 4 </span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#define WAVEFORM_BUTTON_PIN 16</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#define DAC_PIN 0</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="main_8c.html#ab3985f14b173986c16ce5517148f5cfb">   55</a></span>uint <a class="code hl_variable" href="main_8c.html#ab3985f14b173986c16ce5517148f5cfb">rowPins</a>[<a class="code hl_define" href="main_8c.html#a3cfd3aa62338d12609f6d65bce97e9cd">ROWS</a>] = {18, 19, 20, 21}; </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="main_8c.html#a1de16f317864994318321193fcfa135d">   56</a></span>uint <a class="code hl_variable" href="main_8c.html#a1de16f317864994318321193fcfa135d">colPins</a>[<a class="code hl_define" href="main_8c.html#ab59ad2ee1a48b83c2eef1f019ed8cc48">COLS</a>] = {22, 26, 27, 28}; </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="main_8c.html#a856e873a1d14012d57ddb813c4a1e40a">   57</a></span><span class="keywordtype">char</span> <a class="code hl_variable" href="main_8c.html#a856e873a1d14012d57ddb813c4a1e40a">keys</a>[<a class="code hl_define" href="main_8c.html#a3cfd3aa62338d12609f6d65bce97e9cd">ROWS</a>][<a class="code hl_define" href="main_8c.html#ab59ad2ee1a48b83c2eef1f019ed8cc48">COLS</a>] = {{<span class="charliteral">&#39;1&#39;</span>,<span class="charliteral">&#39;2&#39;</span>,<span class="charliteral">&#39;3&#39;</span>,<span class="charliteral">&#39;A&#39;</span>},{<span class="charliteral">&#39;4&#39;</span>,<span class="charliteral">&#39;5&#39;</span>,<span class="charliteral">&#39;6&#39;</span>,<span class="charliteral">&#39;B&#39;</span>},{<span class="charliteral">&#39;7&#39;</span>,<span class="charliteral">&#39;8&#39;</span>,<span class="charliteral">&#39;9&#39;</span>,<span class="charliteral">&#39;C&#39;</span>},{<span class="charliteral">&#39;*&#39;</span>,<span class="charliteral">&#39;0&#39;</span>,<span class="charliteral">&#39;#&#39;</span>,<span class="charliteral">&#39;D&#39;</span>}}; </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="foldopen" id="foldopen00059" data-start="{" data-end="};">
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddf">   59</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddfa6fb78345b237d9715b391bff6773e931">   60</a></span>    <a class="code hl_enumvalue" href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddfa6fb78345b237d9715b391bff6773e931">SINE</a>, </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddfa4233fbf0cafb86abcee94b38d769fc59">   61</a></span>    <a class="code hl_enumvalue" href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddfa4233fbf0cafb86abcee94b38d769fc59">SQUARE</a>, </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddfa40e63a8384df5217cf58feeb37aa7e96">   62</a></span>    <a class="code hl_enumvalue" href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddfa40e63a8384df5217cf58feeb37aa7e96">SAWTOOTH</a>, </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <a class="code hl_enumvalue" href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddfabf52229ee9b3785c253ecf6466ce14b8">TRIANGULAR</a> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddfabf52229ee9b3785c253ecf6466ce14b8">   64</a></span>} <a class="code hl_enumeration" href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddf">Waveform</a>;</div>
+</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="main_8c.html#a3304bb90581ab3d37b30a65af3d098f5">   66</a></span><span class="keyword">volatile</span> <a class="code hl_enumeration" href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddf">Waveform</a> <a class="code hl_variable" href="main_8c.html#a3304bb90581ab3d37b30a65af3d098f5">current_waveform</a> = <a class="code hl_enumvalue" href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddfa6fb78345b237d9715b391bff6773e931">SINE</a>; </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="main_8c.html#aab9449dcb5f496c556d5e32b4d25b7f8">   67</a></span><span class="keyword">volatile</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="main_8c.html#aab9449dcb5f496c556d5e32b4d25b7f8">amplitude</a> = 1000.0; </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="main_8c.html#a40f530119a7aefd258a648a199341686">   68</a></span><span class="keyword">volatile</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="main_8c.html#a40f530119a7aefd258a648a199341686">frequency</a> = 10.0; </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="main_8c.html#a0e809c8840905e1882aca5de814d67c9">   69</a></span><span class="keyword">volatile</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="main_8c.html#a0e809c8840905e1882aca5de814d67c9">dc_offset</a> = 500.0; </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keywordtype">char</span> paramType = 0;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keywordtype">char</span> inputBuffer[20];</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keywordtype">int</span> inputIndex = 0;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">// FunciÃ³n para manejar las interrupciones de los GPIO</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8c.html#a7f6538b252b233c2a00eeabf455b6ac8">gpio_callback</a>(uint gpio, uint32_t events);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">// FunciÃ³n para inicializar los GPIO</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8c.html#acee10fb61031896f1d6682326b0c29fb">setup_gpio</a>();</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment">// FunciÃ³n para manejar la entrada del teclado</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8c.html#a44309b0eb64f8974cd1e9615c26cb98c">handle_input</a>(<span class="keywordtype">char</span> key);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">// FunciÃ³n para generar la forma de onda</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8c.html#a1741995211c26b56c6974c10a1ddd410">generate_waveform</a>();</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="foldopen" id="foldopen00090" data-start="{" data-end="}">
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">   90</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>() {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    stdio_init_all();</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <a class="code hl_function" href="main_8c.html#acee10fb61031896f1d6682326b0c29fb">setup_gpio</a>();</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    printf(<span class="stringliteral">&quot;Signal Generator Started.\n&quot;</span>);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordflow">while</span> (<span class="keyword">true</span>) {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <a class="code hl_function" href="main_8c.html#a1741995211c26b56c6974c10a1ddd410">generate_waveform</a>();</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    }</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>}</div>
+</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="foldopen" id="foldopen00106" data-start="{" data-end="}">
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="main_8c.html#acee10fb61031896f1d6682326b0c29fb">  106</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8c.html#acee10fb61031896f1d6682326b0c29fb">setup_gpio</a>() {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="comment">// ConfiguraciÃ³n para el DAC y el botÃ³n de forma de onda</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    gpio_init(DAC_PIN);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    gpio_set_dir(DAC_PIN, GPIO_OUT);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    gpio_init(WAVEFORM_BUTTON_PIN);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    gpio_set_dir(WAVEFORM_BUTTON_PIN, GPIO_IN);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    gpio_pull_up(WAVEFORM_BUTTON_PIN);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    gpio_set_irq_enabled_with_callback(WAVEFORM_BUTTON_PIN, GPIO_IRQ_EDGE_FALL, <span class="keyword">true</span>, &amp;<a class="code hl_function" href="main_8c.html#a7f6538b252b233c2a00eeabf455b6ac8">gpio_callback</a>);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="comment">// ConfiguraciÃ³n para el teclado</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_define" href="main_8c.html#a3cfd3aa62338d12609f6d65bce97e9cd">ROWS</a>; i++) {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        gpio_init(<a class="code hl_variable" href="main_8c.html#ab3985f14b173986c16ce5517148f5cfb">rowPins</a>[i]);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        gpio_set_dir(<a class="code hl_variable" href="main_8c.html#ab3985f14b173986c16ce5517148f5cfb">rowPins</a>[i], GPIO_OUT);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        gpio_put(<a class="code hl_variable" href="main_8c.html#ab3985f14b173986c16ce5517148f5cfb">rowPins</a>[i], 1);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code hl_define" href="main_8c.html#ab59ad2ee1a48b83c2eef1f019ed8cc48">COLS</a>; i++) {</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        gpio_init(<a class="code hl_variable" href="main_8c.html#a1de16f317864994318321193fcfa135d">colPins</a>[i]);</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        gpio_set_dir(<a class="code hl_variable" href="main_8c.html#a1de16f317864994318321193fcfa135d">colPins</a>[i], GPIO_IN);</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        gpio_pull_up(<a class="code hl_variable" href="main_8c.html#a1de16f317864994318321193fcfa135d">colPins</a>[i]);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        gpio_set_irq_enabled_with_callback(<a class="code hl_variable" href="main_8c.html#a1de16f317864994318321193fcfa135d">colPins</a>[i], GPIO_IRQ_EDGE_FALL, <span class="keyword">true</span>, &amp;<a class="code hl_function" href="main_8c.html#a7f6538b252b233c2a00eeabf455b6ac8">gpio_callback</a>);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    }</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>}</div>
+</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="foldopen" id="foldopen00134" data-start="{" data-end="}">
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="main_8c.html#a1741995211c26b56c6974c10a1ddd410">  134</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8c.html#a1741995211c26b56c6974c10a1ddd410">generate_waveform</a>() {</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keyword">static</span> uint64_t last_time = 0;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    uint64_t current_time = time_us_64();</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordtype">float</span> value = 0;</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="comment">// Calcular el paso de tiempo</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="keywordtype">float</span> time_step = (current_time - last_time) / 1000000.0f;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    last_time = current_time;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keywordflow">switch</span> (<a class="code hl_variable" href="main_8c.html#a3304bb90581ab3d37b30a65af3d098f5">current_waveform</a>) {</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddfa6fb78345b237d9715b391bff6773e931">SINE</a>:</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>            value = <a class="code hl_variable" href="main_8c.html#aab9449dcb5f496c556d5e32b4d25b7f8">amplitude</a> * (sinf(2 * <a class="code hl_define" href="main_8c.html#ae71449b1cc6e6250b91f539153a7a0d3">M_PI</a> * <a class="code hl_variable" href="main_8c.html#a40f530119a7aefd258a648a199341686">frequency</a> * time_step) / 2 + 0.5) + <a class="code hl_variable" href="main_8c.html#a0e809c8840905e1882aca5de814d67c9">dc_offset</a>;</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddfa4233fbf0cafb86abcee94b38d769fc59">SQUARE</a>:</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>            value = <a class="code hl_variable" href="main_8c.html#aab9449dcb5f496c556d5e32b4d25b7f8">amplitude</a> * (sinf(2 * <a class="code hl_define" href="main_8c.html#ae71449b1cc6e6250b91f539153a7a0d3">M_PI</a> * <a class="code hl_variable" href="main_8c.html#a40f530119a7aefd258a648a199341686">frequency</a> * time_step) &gt; 0 ? 1 : -1) / 2 + 0.5 + <a class="code hl_variable" href="main_8c.html#a0e809c8840905e1882aca5de814d67c9">dc_offset</a>;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddfa40e63a8384df5217cf58feeb37aa7e96">SAWTOOTH</a>:</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>            value = <a class="code hl_variable" href="main_8c.html#aab9449dcb5f496c556d5e32b4d25b7f8">amplitude</a> * (2 * fmod(<a class="code hl_variable" href="main_8c.html#a40f530119a7aefd258a648a199341686">frequency</a> * time_step, 1) - 1) / 2 + 0.5 + <a class="code hl_variable" href="main_8c.html#a0e809c8840905e1882aca5de814d67c9">dc_offset</a>;</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddfabf52229ee9b3785c253ecf6466ce14b8">TRIANGULAR</a>:</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>            value = <a class="code hl_variable" href="main_8c.html#aab9449dcb5f496c556d5e32b4d25b7f8">amplitude</a> * (1.0 - fabs(fmod(<a class="code hl_variable" href="main_8c.html#a40f530119a7aefd258a648a199341686">frequency</a> * time_step * 4, 4) - 2)) + <a class="code hl_variable" href="main_8c.html#a0e809c8840905e1882aca5de814d67c9">dc_offset</a>;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    }</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="comment">// Convertir a valor DAC</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    uint dac_value = (uint)((value / <a class="code hl_define" href="main_8c.html#a2c9e85d22a9ba37ea589b1747af46307">VREF</a>) * <a class="code hl_define" href="main_8c.html#a41ef69195f41271a871d6b5935767b1d">DAC_MAX_VALUE</a>);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    gpio_put(DAC_PIN, dac_value);  <span class="comment">// Suponiendo que DAC_PIN estÃ¡ conectado a un DAC de escalera R2R simple o similar</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>}</div>
+</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="foldopen" id="foldopen00166" data-start="{" data-end="}">
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="main_8c.html#a7f6538b252b233c2a00eeabf455b6ac8">  166</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8c.html#a7f6538b252b233c2a00eeabf455b6ac8">gpio_callback</a>(uint gpio, uint32_t events) {</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="keyword">static</span> uint64_t last_interrupt_time = 0;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    uint64_t current_time = to_ms_since_boot(get_absolute_time());</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keywordflow">if</span> (current_time - last_interrupt_time &gt; <a class="code hl_define" href="main_8c.html#add56dedbc09f82766e39588e01978e7d">DEBOUNCE_MS</a>) {</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        last_interrupt_time = current_time;</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        <span class="keywordflow">if</span> (gpio == WAVEFORM_BUTTON_PIN) {</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>            <a class="code hl_variable" href="main_8c.html#a3304bb90581ab3d37b30a65af3d098f5">current_waveform</a> = (<a class="code hl_enumeration" href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddf">Waveform</a>)((<a class="code hl_variable" href="main_8c.html#a3304bb90581ab3d37b30a65af3d098f5">current_waveform</a> + 1) % 4);</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>            printf(<span class="stringliteral">&quot;Forma de onda cambiada a %d\n&quot;</span>, <a class="code hl_variable" href="main_8c.html#a3304bb90581ab3d37b30a65af3d098f5">current_waveform</a>);</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> row = 0; row &lt; <a class="code hl_define" href="main_8c.html#a3cfd3aa62338d12609f6d65bce97e9cd">ROWS</a>; ++row) {</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>                gpio_put(<a class="code hl_variable" href="main_8c.html#ab3985f14b173986c16ce5517148f5cfb">rowPins</a>[row], 0);  <span class="comment">// Activar la fila</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> col = 0; col &lt; <a class="code hl_define" href="main_8c.html#ab59ad2ee1a48b83c2eef1f019ed8cc48">COLS</a>; ++col) {</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>                    <span class="keywordflow">if</span> (!gpio_get(<a class="code hl_variable" href="main_8c.html#a1de16f317864994318321193fcfa135d">colPins</a>[col])) {</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>                        <span class="keywordtype">char</span> key = <a class="code hl_variable" href="main_8c.html#a856e873a1d14012d57ddb813c4a1e40a">keys</a>[row][col];</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>                        printf(<span class="stringliteral">&quot;Tecla presionada: %c\n&quot;</span>, key);</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>                        <a class="code hl_function" href="main_8c.html#a44309b0eb64f8974cd1e9615c26cb98c">handle_input</a>(key);</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>                    }</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>                }</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>                gpio_put(<a class="code hl_variable" href="main_8c.html#ab3985f14b173986c16ce5517148f5cfb">rowPins</a>[row], 1);  <span class="comment">// Desactivar la fila</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>            }</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        }</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    }</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>}</div>
+</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="foldopen" id="foldopen00195" data-start="{" data-end="}">
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="main_8c.html#a44309b0eb64f8974cd1e9615c26cb98c">  195</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="main_8c.html#a44309b0eb64f8974cd1e9615c26cb98c">handle_input</a>(<span class="keywordtype">char</span> key) {</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keywordflow">if</span> (key == <span class="charliteral">&#39;D&#39;</span>) {</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        <span class="keywordflow">if</span> (paramType == <span class="charliteral">&#39;A&#39;</span>) {</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>            <a class="code hl_variable" href="main_8c.html#aab9449dcb5f496c556d5e32b4d25b7f8">amplitude</a> = strtof(inputBuffer, NULL);</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>            printf(<span class="stringliteral">&quot;Amplitud establecida en: %.2f mV\n&quot;</span>, <a class="code hl_variable" href="main_8c.html#aab9449dcb5f496c556d5e32b4d25b7f8">amplitude</a>);</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (paramType == <span class="charliteral">&#39;B&#39;</span>) {</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>            <a class="code hl_variable" href="main_8c.html#a40f530119a7aefd258a648a199341686">frequency</a> = strtof(inputBuffer,NULL);</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>            printf(<span class="stringliteral">&quot;Frecuencia establecida en: %.2f Hz\n&quot;</span>, <a class="code hl_variable" href="main_8c.html#a40f530119a7aefd258a648a199341686">frequency</a>);</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (paramType == <span class="charliteral">&#39;C&#39;</span>) {</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>            <a class="code hl_variable" href="main_8c.html#a0e809c8840905e1882aca5de814d67c9">dc_offset</a> = strtof(inputBuffer,NULL);</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>            printf(<span class="stringliteral">&quot;Desplazamiento DC establecido en: %.2f mV\n&quot;</span>, <a class="code hl_variable" href="main_8c.html#a0e809c8840905e1882aca5de814d67c9">dc_offset</a>);</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        }</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        inputIndex = 0;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        memset(inputBuffer, 0, <span class="keyword">sizeof</span>(inputBuffer));</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        <span class="keywordflow">if</span> (key == <span class="charliteral">&#39;A&#39;</span> || key == <span class="charliteral">&#39;B&#39;</span> || key == <span class="charliteral">&#39;C&#39;</span>) {</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>            paramType = key;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (isdigit(key)) {</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>            <span class="keywordflow">if</span> (inputIndex &lt; <span class="keyword">sizeof</span>(inputBuffer) - 1) {</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>                inputBuffer[inputIndex++] = key;</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>            }</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        }</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    }</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>}</div>
+</div>
+<div class="ttc" id="amain_8c_html_a0e809c8840905e1882aca5de814d67c9"><div class="ttname"><a href="main_8c.html#a0e809c8840905e1882aca5de814d67c9">dc_offset</a></div><div class="ttdeci">volatile float dc_offset</div><div class="ttdoc">Establece el desplazamiento DC actual en el valor por DEFECTO.</div><div class="ttdef"><b>Definition</b> <a href="#l00069">main.c:69</a></div></div>
+<div class="ttc" id="amain_8c_html_a1741995211c26b56c6974c10a1ddd410"><div class="ttname"><a href="main_8c.html#a1741995211c26b56c6974c10a1ddd410">generate_waveform</a></div><div class="ttdeci">void generate_waveform()</div><div class="ttdef"><b>Definition</b> <a href="#l00134">main.c:134</a></div></div>
+<div class="ttc" id="amain_8c_html_a1de16f317864994318321193fcfa135d"><div class="ttname"><a href="main_8c.html#a1de16f317864994318321193fcfa135d">colPins</a></div><div class="ttdeci">uint colPins[COLS]</div><div class="ttdoc">DisposiciÃ³n de pines de las columnas (GPIOs) en el RP2040.</div><div class="ttdef"><b>Definition</b> <a href="#l00056">main.c:56</a></div></div>
+<div class="ttc" id="amain_8c_html_a2c9e85d22a9ba37ea589b1747af46307"><div class="ttname"><a href="main_8c.html#a2c9e85d22a9ba37ea589b1747af46307">VREF</a></div><div class="ttdeci">#define VREF</div><div class="ttdoc">Voltaje de referencia para el DAC de 8 bits.</div><div class="ttdef"><b>Definition</b> <a href="#l00048">main.c:48</a></div></div>
+<div class="ttc" id="amain_8c_html_a3304bb90581ab3d37b30a65af3d098f5"><div class="ttname"><a href="main_8c.html#a3304bb90581ab3d37b30a65af3d098f5">current_waveform</a></div><div class="ttdeci">volatile Waveform current_waveform</div><div class="ttdoc">Forma de onda actual producida por la seÃ±al. En esta lÃ­nea, establece la forma de onda de seÃ±al pr...</div><div class="ttdef"><b>Definition</b> <a href="#l00066">main.c:66</a></div></div>
+<div class="ttc" id="amain_8c_html_a3cfd3aa62338d12609f6d65bce97e9cd"><div class="ttname"><a href="main_8c.html#a3cfd3aa62338d12609f6d65bce97e9cd">ROWS</a></div><div class="ttdeci">#define ROWS</div><div class="ttdoc">Cantidad de filas.</div><div class="ttdef"><b>Definition</b> <a href="#l00050">main.c:50</a></div></div>
+<div class="ttc" id="amain_8c_html_a40f530119a7aefd258a648a199341686"><div class="ttname"><a href="main_8c.html#a40f530119a7aefd258a648a199341686">frequency</a></div><div class="ttdeci">volatile float frequency</div><div class="ttdoc">Establece la frecuencia actual en el valor por DEFECTO.</div><div class="ttdef"><b>Definition</b> <a href="#l00068">main.c:68</a></div></div>
+<div class="ttc" id="amain_8c_html_a41ef69195f41271a871d6b5935767b1d"><div class="ttname"><a href="main_8c.html#a41ef69195f41271a871d6b5935767b1d">DAC_MAX_VALUE</a></div><div class="ttdeci">#define DAC_MAX_VALUE</div><div class="ttdoc">Valor mÃ¡ximo de amplitud a convertir por el DAC de 8 bits (2^8 - 1)</div><div class="ttdef"><b>Definition</b> <a href="#l00047">main.c:47</a></div></div>
+<div class="ttc" id="amain_8c_html_a44309b0eb64f8974cd1e9615c26cb98c"><div class="ttname"><a href="main_8c.html#a44309b0eb64f8974cd1e9615c26cb98c">handle_input</a></div><div class="ttdeci">void handle_input(char key)</div><div class="ttdef"><b>Definition</b> <a href="#l00195">main.c:195</a></div></div>
+<div class="ttc" id="amain_8c_html_a7d8c79438df26f5d08937a6566cd8ddf"><div class="ttname"><a href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddf">Waveform</a></div><div class="ttdeci">Waveform</div><div class="ttdef"><b>Definition</b> <a href="#l00059">main.c:59</a></div></div>
+<div class="ttc" id="amain_8c_html_a7d8c79438df26f5d08937a6566cd8ddfa40e63a8384df5217cf58feeb37aa7e96"><div class="ttname"><a href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddfa40e63a8384df5217cf58feeb37aa7e96">SAWTOOTH</a></div><div class="ttdeci">@ SAWTOOTH</div><div class="ttdoc">Onda diente de sierra. El tiempo de subida coincide con el perÃ­odo, mientras que el tiempo de caÃ­da...</div><div class="ttdef"><b>Definition</b> <a href="#l00062">main.c:62</a></div></div>
+<div class="ttc" id="amain_8c_html_a7d8c79438df26f5d08937a6566cd8ddfa4233fbf0cafb86abcee94b38d769fc59"><div class="ttname"><a href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddfa4233fbf0cafb86abcee94b38d769fc59">SQUARE</a></div><div class="ttdeci">@ SQUARE</div><div class="ttdoc">Onda cuadrada, tambiÃ©n llamada onda pulsada, simÃ©trica (ciclo de trabajo del 50%) centrada alrededo...</div><div class="ttdef"><b>Definition</b> <a href="#l00061">main.c:61</a></div></div>
+<div class="ttc" id="amain_8c_html_a7d8c79438df26f5d08937a6566cd8ddfa6fb78345b237d9715b391bff6773e931"><div class="ttname"><a href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddfa6fb78345b237d9715b391bff6773e931">SINE</a></div><div class="ttdeci">@ SINE</div><div class="ttdoc">Onda sinusoidal. Sin(2*pi*f*t). centrada alrededor de su desplazamiento DC.</div><div class="ttdef"><b>Definition</b> <a href="#l00060">main.c:60</a></div></div>
+<div class="ttc" id="amain_8c_html_a7d8c79438df26f5d08937a6566cd8ddfabf52229ee9b3785c253ecf6466ce14b8"><div class="ttname"><a href="main_8c.html#a7d8c79438df26f5d08937a6566cd8ddfabf52229ee9b3785c253ecf6466ce14b8">TRIANGULAR</a></div><div class="ttdeci">@ TRIANGULAR</div><div class="ttdoc">Onda triangular. SimÃ©trica (tiempo de subida igual al 50% del perÃ­odo, tiempo de caÃ­da igual al 50...</div><div class="ttdef"><b>Definition</b> <a href="#l00064">main.c:63</a></div></div>
+<div class="ttc" id="amain_8c_html_a7f6538b252b233c2a00eeabf455b6ac8"><div class="ttname"><a href="main_8c.html#a7f6538b252b233c2a00eeabf455b6ac8">gpio_callback</a></div><div class="ttdeci">void gpio_callback(uint gpio, uint32_t events)</div><div class="ttdef"><b>Definition</b> <a href="#l00166">main.c:166</a></div></div>
+<div class="ttc" id="amain_8c_html_a856e873a1d14012d57ddb813c4a1e40a"><div class="ttname"><a href="main_8c.html#a856e873a1d14012d57ddb813c4a1e40a">keys</a></div><div class="ttdeci">char keys[ROWS][COLS]</div><div class="ttdoc">Matriz 4x4, que contiene cada uno de los caracteres presentes en el diseÃ±o del teclado....</div><div class="ttdef"><b>Definition</b> <a href="#l00057">main.c:57</a></div></div>
+<div class="ttc" id="amain_8c_html_aab9449dcb5f496c556d5e32b4d25b7f8"><div class="ttname"><a href="main_8c.html#aab9449dcb5f496c556d5e32b4d25b7f8">amplitude</a></div><div class="ttdeci">volatile float amplitude</div><div class="ttdoc">Establece la amplitud actual en el valor por DEFECTO.</div><div class="ttdef"><b>Definition</b> <a href="#l00067">main.c:67</a></div></div>
+<div class="ttc" id="amain_8c_html_ab3985f14b173986c16ce5517148f5cfb"><div class="ttname"><a href="main_8c.html#ab3985f14b173986c16ce5517148f5cfb">rowPins</a></div><div class="ttdeci">uint rowPins[ROWS]</div><div class="ttdoc">DisposiciÃ³n de pines de las filas (GPIOs) en el RP2040.</div><div class="ttdef"><b>Definition</b> <a href="#l00055">main.c:55</a></div></div>
+<div class="ttc" id="amain_8c_html_ab59ad2ee1a48b83c2eef1f019ed8cc48"><div class="ttname"><a href="main_8c.html#ab59ad2ee1a48b83c2eef1f019ed8cc48">COLS</a></div><div class="ttdeci">#define COLS</div><div class="ttdoc">Cantidad de columnas.</div><div class="ttdef"><b>Definition</b> <a href="#l00051">main.c:51</a></div></div>
+<div class="ttc" id="amain_8c_html_acee10fb61031896f1d6682326b0c29fb"><div class="ttname"><a href="main_8c.html#acee10fb61031896f1d6682326b0c29fb">setup_gpio</a></div><div class="ttdeci">void setup_gpio()</div><div class="ttdef"><b>Definition</b> <a href="#l00106">main.c:106</a></div></div>
+<div class="ttc" id="amain_8c_html_add56dedbc09f82766e39588e01978e7d"><div class="ttname"><a href="main_8c.html#add56dedbc09f82766e39588e01978e7d">DEBOUNCE_MS</a></div><div class="ttdeci">#define DEBOUNCE_MS</div><div class="ttdoc">Retraso (uS). Con fines de eliminaciÃ³n de rebotes.</div><div class="ttdef"><b>Definition</b> <a href="#l00042">main.c:42</a></div></div>
+<div class="ttc" id="amain_8c_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition</b> <a href="#l00090">main.c:90</a></div></div>
+<div class="ttc" id="amain_8c_html_ae71449b1cc6e6250b91f539153a7a0d3"><div class="ttname"><a href="main_8c.html#ae71449b1cc6e6250b91f539153a7a0d3">M_PI</a></div><div class="ttdeci">#define M_PI</div><div class="ttdoc">Valor de PI.</div><div class="ttdef"><b>Definition</b> <a href="#l00049">main.c:49</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>

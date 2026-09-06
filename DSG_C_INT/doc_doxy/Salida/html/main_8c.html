@@ -1,0 +1,709 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>GDS_Interrupciones: Referencia del archivo C:/Users/anita/Downloads/DIG3_3/DIG3_3/GDS_C_INT/signal_gen/main.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo udea.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">GDS_Interrupciones<span id="projectnumber">&#160;1</span>
+   </div>
+   <div id="projectbrief">GeneradorSeñales</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">defines</a> &#124;
+<a href="#enum-members">Enumeraciones</a> &#124;
+<a href="#func-members">Funciones</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">Referencia del archivo C:/Users/anita/Downloads/DIG3_3/DIG3_3/GDS_C_INT/signal_gen/main.c</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;pico/stdlib.h&quot;</code><br />
+<code>#include &quot;hardware/gpio.h&quot;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;ctype.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+</div>
+<p><a href="main_8c_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+defines</h2></td></tr>
+<tr class="memitem:add56dedbc09f82766e39588e01978e7d" id="r_add56dedbc09f82766e39588e01978e7d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add56dedbc09f82766e39588e01978e7d">DEBOUNCE_MS</a>&#160;&#160;&#160;200</td></tr>
+<tr class="memdesc:add56dedbc09f82766e39588e01978e7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retraso (uS). Con fines de eliminaciÃ³n de rebotes.  <br /></td></tr>
+<tr class="separator:add56dedbc09f82766e39588e01978e7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67a5f231b52df2f8cc2af35609cbd376" id="r_a67a5f231b52df2f8cc2af35609cbd376"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67a5f231b52df2f8cc2af35609cbd376">AMPLITUDE_MIN</a>&#160;&#160;&#160;100.0</td></tr>
+<tr class="memdesc:a67a5f231b52df2f8cc2af35609cbd376"><td class="mdescLeft">&#160;</td><td class="mdescRight">Amplitud mÃ­nima (mV)  <br /></td></tr>
+<tr class="separator:a67a5f231b52df2f8cc2af35609cbd376"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a225ca4481cc8bc065f82db955b3058ef" id="r_a225ca4481cc8bc065f82db955b3058ef"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a225ca4481cc8bc065f82db955b3058ef">AMPLITUDE_MAX</a>&#160;&#160;&#160;2500.0</td></tr>
+<tr class="memdesc:a225ca4481cc8bc065f82db955b3058ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Amplitud mÃ¡xima (mV)  <br /></td></tr>
+<tr class="separator:a225ca4481cc8bc065f82db955b3058ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab1126a23f72e0d2b7e271f19ee330ba" id="r_aab1126a23f72e0d2b7e271f19ee330ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab1126a23f72e0d2b7e271f19ee330ba">FREQUENCY_MIN</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:aab1126a23f72e0d2b7e271f19ee330ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frecuencia mÃ­nima (Hz)  <br /></td></tr>
+<tr class="separator:aab1126a23f72e0d2b7e271f19ee330ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a723455414fa26047e35c5e96c09ccf0c" id="r_a723455414fa26047e35c5e96c09ccf0c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a723455414fa26047e35c5e96c09ccf0c">FREQUENCY_MAX</a>&#160;&#160;&#160;12000000</td></tr>
+<tr class="memdesc:a723455414fa26047e35c5e96c09ccf0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frecuencia mÃ¡xima (Hz)  <br /></td></tr>
+<tr class="separator:a723455414fa26047e35c5e96c09ccf0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41ef69195f41271a871d6b5935767b1d" id="r_a41ef69195f41271a871d6b5935767b1d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41ef69195f41271a871d6b5935767b1d">DAC_MAX_VALUE</a>&#160;&#160;&#160;255</td></tr>
+<tr class="memdesc:a41ef69195f41271a871d6b5935767b1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Valor mÃ¡ximo de amplitud a convertir por el DAC de 8 bits (2^8 - 1)  <br /></td></tr>
+<tr class="separator:a41ef69195f41271a871d6b5935767b1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c9e85d22a9ba37ea589b1747af46307" id="r_a2c9e85d22a9ba37ea589b1747af46307"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c9e85d22a9ba37ea589b1747af46307">VREF</a>&#160;&#160;&#160;3.3</td></tr>
+<tr class="memdesc:a2c9e85d22a9ba37ea589b1747af46307"><td class="mdescLeft">&#160;</td><td class="mdescRight">Voltaje de referencia para el DAC de 8 bits.  <br /></td></tr>
+<tr class="separator:a2c9e85d22a9ba37ea589b1747af46307"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae71449b1cc6e6250b91f539153a7a0d3" id="r_ae71449b1cc6e6250b91f539153a7a0d3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae71449b1cc6e6250b91f539153a7a0d3">M_PI</a>&#160;&#160;&#160;3.141592</td></tr>
+<tr class="memdesc:ae71449b1cc6e6250b91f539153a7a0d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Valor de PI.  <br /></td></tr>
+<tr class="separator:ae71449b1cc6e6250b91f539153a7a0d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cfd3aa62338d12609f6d65bce97e9cd" id="r_a3cfd3aa62338d12609f6d65bce97e9cd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3cfd3aa62338d12609f6d65bce97e9cd">ROWS</a>&#160;&#160;&#160;4</td></tr>
+<tr class="memdesc:a3cfd3aa62338d12609f6d65bce97e9cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cantidad de filas.  <br /></td></tr>
+<tr class="separator:a3cfd3aa62338d12609f6d65bce97e9cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab59ad2ee1a48b83c2eef1f019ed8cc48" id="r_ab59ad2ee1a48b83c2eef1f019ed8cc48"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab59ad2ee1a48b83c2eef1f019ed8cc48">COLS</a>&#160;&#160;&#160;4</td></tr>
+<tr class="memdesc:ab59ad2ee1a48b83c2eef1f019ed8cc48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cantidad de columnas.  <br /></td></tr>
+<tr class="separator:ab59ad2ee1a48b83c2eef1f019ed8cc48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6457cbebecb29617532b0288c07221b" id="r_ab6457cbebecb29617532b0288c07221b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6457cbebecb29617532b0288c07221b">WAVEFORM_BUTTON_PIN</a>&#160;&#160;&#160;16</td></tr>
+<tr class="separator:ab6457cbebecb29617532b0288c07221b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3df6766829d4e2a23ad7afffcd8999d1" id="r_a3df6766829d4e2a23ad7afffcd8999d1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3df6766829d4e2a23ad7afffcd8999d1">DAC_PIN</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a3df6766829d4e2a23ad7afffcd8999d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumeraciones</h2></td></tr>
+<tr class="memitem:a7d8c79438df26f5d08937a6566cd8ddf" id="r_a7d8c79438df26f5d08937a6566cd8ddf"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d8c79438df26f5d08937a6566cd8ddf">Waveform</a> { <a class="el" href="#a7d8c79438df26f5d08937a6566cd8ddfa6fb78345b237d9715b391bff6773e931">SINE</a>
+, <a class="el" href="#a7d8c79438df26f5d08937a6566cd8ddfa4233fbf0cafb86abcee94b38d769fc59">SQUARE</a>
+, <a class="el" href="#a7d8c79438df26f5d08937a6566cd8ddfa40e63a8384df5217cf58feeb37aa7e96">SAWTOOTH</a>
+, <a class="el" href="#a7d8c79438df26f5d08937a6566cd8ddfabf52229ee9b3785c253ecf6466ce14b8">TRIANGULAR</a>
+ }</td></tr>
+<tr class="separator:a7d8c79438df26f5d08937a6566cd8ddf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:a7f6538b252b233c2a00eeabf455b6ac8" id="r_a7f6538b252b233c2a00eeabf455b6ac8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f6538b252b233c2a00eeabf455b6ac8">gpio_callback</a> (uint gpio, uint32_t events)</td></tr>
+<tr class="separator:a7f6538b252b233c2a00eeabf455b6ac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acee10fb61031896f1d6682326b0c29fb" id="r_acee10fb61031896f1d6682326b0c29fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acee10fb61031896f1d6682326b0c29fb">setup_gpio</a> ()</td></tr>
+<tr class="separator:acee10fb61031896f1d6682326b0c29fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44309b0eb64f8974cd1e9615c26cb98c" id="r_a44309b0eb64f8974cd1e9615c26cb98c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44309b0eb64f8974cd1e9615c26cb98c">handle_input</a> (char key)</td></tr>
+<tr class="separator:a44309b0eb64f8974cd1e9615c26cb98c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1741995211c26b56c6974c10a1ddd410" id="r_a1741995211c26b56c6974c10a1ddd410"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1741995211c26b56c6974c10a1ddd410">generate_waveform</a> ()</td></tr>
+<tr class="separator:a1741995211c26b56c6974c10a1ddd410"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4" id="r_ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
+<tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ab3985f14b173986c16ce5517148f5cfb" id="r_ab3985f14b173986c16ce5517148f5cfb"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab3985f14b173986c16ce5517148f5cfb">rowPins</a> [<a class="el" href="#a3cfd3aa62338d12609f6d65bce97e9cd">ROWS</a>] = {18, 19, 20, 21}</td></tr>
+<tr class="memdesc:ab3985f14b173986c16ce5517148f5cfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">DisposiciÃ³n de pines de las filas (GPIOs) en el RP2040.  <br /></td></tr>
+<tr class="separator:ab3985f14b173986c16ce5517148f5cfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1de16f317864994318321193fcfa135d" id="r_a1de16f317864994318321193fcfa135d"><td class="memItemLeft" align="right" valign="top">uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1de16f317864994318321193fcfa135d">colPins</a> [<a class="el" href="#ab59ad2ee1a48b83c2eef1f019ed8cc48">COLS</a>] = {22, 26, 27, 28}</td></tr>
+<tr class="memdesc:a1de16f317864994318321193fcfa135d"><td class="mdescLeft">&#160;</td><td class="mdescRight">DisposiciÃ³n de pines de las columnas (GPIOs) en el RP2040.  <br /></td></tr>
+<tr class="separator:a1de16f317864994318321193fcfa135d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a856e873a1d14012d57ddb813c4a1e40a" id="r_a856e873a1d14012d57ddb813c4a1e40a"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a856e873a1d14012d57ddb813c4a1e40a">keys</a> [<a class="el" href="#a3cfd3aa62338d12609f6d65bce97e9cd">ROWS</a>][<a class="el" href="#ab59ad2ee1a48b83c2eef1f019ed8cc48">COLS</a>] = {{'1','2','3','A'},{'4','5','6','B'},{'7','8','9','C'},{'*','0','#','D'}}</td></tr>
+<tr class="memdesc:a856e873a1d14012d57ddb813c4a1e40a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matriz 4x4, que contiene cada uno de los caracteres presentes en el diseÃ±o del teclado. El orden de los caracteres debe coincidir con el orden del teclado en sÃ­.  <br /></td></tr>
+<tr class="separator:a856e873a1d14012d57ddb813c4a1e40a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3304bb90581ab3d37b30a65af3d098f5" id="r_a3304bb90581ab3d37b30a65af3d098f5"><td class="memItemLeft" align="right" valign="top">volatile <a class="el" href="#a7d8c79438df26f5d08937a6566cd8ddf">Waveform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3304bb90581ab3d37b30a65af3d098f5">current_waveform</a> = <a class="el" href="#a7d8c79438df26f5d08937a6566cd8ddfa6fb78345b237d9715b391bff6773e931">SINE</a></td></tr>
+<tr class="memdesc:a3304bb90581ab3d37b30a65af3d098f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forma de onda actual producida por la seÃ±al. En esta lÃ­nea, establece la forma de onda de seÃ±al predeterminada como onda sinusoidal.  <br /></td></tr>
+<tr class="separator:a3304bb90581ab3d37b30a65af3d098f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab9449dcb5f496c556d5e32b4d25b7f8" id="r_aab9449dcb5f496c556d5e32b4d25b7f8"><td class="memItemLeft" align="right" valign="top">volatile float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab9449dcb5f496c556d5e32b4d25b7f8">amplitude</a> = 1000.0</td></tr>
+<tr class="memdesc:aab9449dcb5f496c556d5e32b4d25b7f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Establece la amplitud actual en el valor por DEFECTO.  <br /></td></tr>
+<tr class="separator:aab9449dcb5f496c556d5e32b4d25b7f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40f530119a7aefd258a648a199341686" id="r_a40f530119a7aefd258a648a199341686"><td class="memItemLeft" align="right" valign="top">volatile float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40f530119a7aefd258a648a199341686">frequency</a> = 10.0</td></tr>
+<tr class="memdesc:a40f530119a7aefd258a648a199341686"><td class="mdescLeft">&#160;</td><td class="mdescRight">Establece la frecuencia actual en el valor por DEFECTO.  <br /></td></tr>
+<tr class="separator:a40f530119a7aefd258a648a199341686"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e809c8840905e1882aca5de814d67c9" id="r_a0e809c8840905e1882aca5de814d67c9"><td class="memItemLeft" align="right" valign="top">volatile float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e809c8840905e1882aca5de814d67c9">dc_offset</a> = 500.0</td></tr>
+<tr class="memdesc:a0e809c8840905e1882aca5de814d67c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Establece el desplazamiento DC actual en el valor por DEFECTO.  <br /></td></tr>
+<tr class="separator:a0e809c8840905e1882aca5de814d67c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55b8f1bdc77969f7a2c3de29778421d4" id="r_a55b8f1bdc77969f7a2c3de29778421d4"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55b8f1bdc77969f7a2c3de29778421d4">paramType</a> = 0</td></tr>
+<tr class="separator:a55b8f1bdc77969f7a2c3de29778421d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9286c2ed3a2d4203185071f7a883cbf9" id="r_a9286c2ed3a2d4203185071f7a883cbf9"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9286c2ed3a2d4203185071f7a883cbf9">inputBuffer</a> [20]</td></tr>
+<tr class="separator:a9286c2ed3a2d4203185071f7a883cbf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c2f87177235c413f20dff6782cce9b6" id="r_a7c2f87177235c413f20dff6782cce9b6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c2f87177235c413f20dff6782cce9b6">inputIndex</a> = 0</td></tr>
+<tr class="separator:a7c2f87177235c413f20dff6782cce9b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentación de «define»</h2>
+<a id="a225ca4481cc8bc065f82db955b3058ef" name="a225ca4481cc8bc065f82db955b3058ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a225ca4481cc8bc065f82db955b3058ef">&#9670;&#160;</a></span>AMPLITUDE_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AMPLITUDE_MAX&#160;&#160;&#160;2500.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Amplitud mÃ¡xima (mV) </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00044">44</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a67a5f231b52df2f8cc2af35609cbd376" name="a67a5f231b52df2f8cc2af35609cbd376"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67a5f231b52df2f8cc2af35609cbd376">&#9670;&#160;</a></span>AMPLITUDE_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define AMPLITUDE_MIN&#160;&#160;&#160;100.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Amplitud mÃ­nima (mV) </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00043">43</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="ab59ad2ee1a48b83c2eef1f019ed8cc48" name="ab59ad2ee1a48b83c2eef1f019ed8cc48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab59ad2ee1a48b83c2eef1f019ed8cc48">&#9670;&#160;</a></span>COLS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define COLS&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cantidad de columnas. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00051">51</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a41ef69195f41271a871d6b5935767b1d" name="a41ef69195f41271a871d6b5935767b1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41ef69195f41271a871d6b5935767b1d">&#9670;&#160;</a></span>DAC_MAX_VALUE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DAC_MAX_VALUE&#160;&#160;&#160;255</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Valor mÃ¡ximo de amplitud a convertir por el DAC de 8 bits (2^8 - 1) </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00047">47</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a3df6766829d4e2a23ad7afffcd8999d1" name="a3df6766829d4e2a23ad7afffcd8999d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3df6766829d4e2a23ad7afffcd8999d1">&#9670;&#160;</a></span>DAC_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DAC_PIN&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00053">53</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="add56dedbc09f82766e39588e01978e7d" name="add56dedbc09f82766e39588e01978e7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add56dedbc09f82766e39588e01978e7d">&#9670;&#160;</a></span>DEBOUNCE_MS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBOUNCE_MS&#160;&#160;&#160;200</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retraso (uS). Con fines de eliminaciÃ³n de rebotes. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00042">42</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a723455414fa26047e35c5e96c09ccf0c" name="a723455414fa26047e35c5e96c09ccf0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a723455414fa26047e35c5e96c09ccf0c">&#9670;&#160;</a></span>FREQUENCY_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FREQUENCY_MAX&#160;&#160;&#160;12000000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Frecuencia mÃ¡xima (Hz) </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00046">46</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="aab1126a23f72e0d2b7e271f19ee330ba" name="aab1126a23f72e0d2b7e271f19ee330ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab1126a23f72e0d2b7e271f19ee330ba">&#9670;&#160;</a></span>FREQUENCY_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FREQUENCY_MIN&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Frecuencia mÃ­nima (Hz) </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00045">45</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="ae71449b1cc6e6250b91f539153a7a0d3" name="ae71449b1cc6e6250b91f539153a7a0d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae71449b1cc6e6250b91f539153a7a0d3">&#9670;&#160;</a></span>M_PI</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define M_PI&#160;&#160;&#160;3.141592</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Valor de PI. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00049">49</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a3cfd3aa62338d12609f6d65bce97e9cd" name="a3cfd3aa62338d12609f6d65bce97e9cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cfd3aa62338d12609f6d65bce97e9cd">&#9670;&#160;</a></span>ROWS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ROWS&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cantidad de filas. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00050">50</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a2c9e85d22a9ba37ea589b1747af46307" name="a2c9e85d22a9ba37ea589b1747af46307"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c9e85d22a9ba37ea589b1747af46307">&#9670;&#160;</a></span>VREF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VREF&#160;&#160;&#160;3.3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Voltaje de referencia para el DAC de 8 bits. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00048">48</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="ab6457cbebecb29617532b0288c07221b" name="ab6457cbebecb29617532b0288c07221b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6457cbebecb29617532b0288c07221b">&#9670;&#160;</a></span>WAVEFORM_BUTTON_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define WAVEFORM_BUTTON_PIN&#160;&#160;&#160;16</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00052">52</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de enumeraciones</h2>
+<a id="a7d8c79438df26f5d08937a6566cd8ddf" name="a7d8c79438df26f5d08937a6566cd8ddf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d8c79438df26f5d08937a6566cd8ddf">&#9670;&#160;</a></span>Waveform</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a7d8c79438df26f5d08937a6566cd8ddf">Waveform</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Valores de enumeraciones</th></tr><tr><td class="fieldname"><a id="a7d8c79438df26f5d08937a6566cd8ddfa6fb78345b237d9715b391bff6773e931" name="a7d8c79438df26f5d08937a6566cd8ddfa6fb78345b237d9715b391bff6773e931"></a>SINE&#160;</td><td class="fielddoc"><p>Onda sinusoidal. Sin(2*pi*f*t). centrada alrededor de su desplazamiento DC. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a7d8c79438df26f5d08937a6566cd8ddfa4233fbf0cafb86abcee94b38d769fc59" name="a7d8c79438df26f5d08937a6566cd8ddfa4233fbf0cafb86abcee94b38d769fc59"></a>SQUARE&#160;</td><td class="fielddoc"><p>Onda cuadrada, tambiÃ©n llamada onda pulsada, simÃ©trica (ciclo de trabajo del 50%) centrada alrededor de su desplazamiento DC. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a7d8c79438df26f5d08937a6566cd8ddfa40e63a8384df5217cf58feeb37aa7e96" name="a7d8c79438df26f5d08937a6566cd8ddfa40e63a8384df5217cf58feeb37aa7e96"></a>SAWTOOTH&#160;</td><td class="fielddoc"><p>Onda diente de sierra. El tiempo de subida coincide con el perÃ­odo, mientras que el tiempo de caÃ­da va a cero. centrada alrededor de su desplazamiento DC. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a7d8c79438df26f5d08937a6566cd8ddfabf52229ee9b3785c253ecf6466ce14b8" name="a7d8c79438df26f5d08937a6566cd8ddfabf52229ee9b3785c253ecf6466ce14b8"></a>TRIANGULAR&#160;</td><td class="fielddoc"><p>Onda triangular. SimÃ©trica (tiempo de subida igual al 50% del perÃ­odo, tiempo de caÃ­da igual al 50% del perÃ­odo). Centrada alrededor de su desplazamiento DC. </p>
+</td></tr>
+</table>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00059">59</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de funciones</h2>
+<a id="a1741995211c26b56c6974c10a1ddd410" name="a1741995211c26b56c6974c10a1ddd410"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1741995211c26b56c6974c10a1ddd410">&#9670;&#160;</a></span>generate_waveform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void generate_waveform </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Esta funciÃ³n genera una forma de onda basada en la ecuaciÃ³n correspondiente a la forma de onda deseada. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00134">134</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a7f6538b252b233c2a00eeabf455b6ac8" name="a7f6538b252b233c2a00eeabf455b6ac8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f6538b252b233c2a00eeabf455b6ac8">&#9670;&#160;</a></span>gpio_callback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gpio_callback </td>
+          <td>(</td>
+          <td class="paramtype">uint</td>          <td class="paramname"><span class="paramname"><em>gpio</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>events</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>FunciÃ³n para manejar las interrupciones de los GPIO. Debe manejar tanto el botÃ³n como el teclado. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00166">166</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a44309b0eb64f8974cd1e9615c26cb98c" name="a44309b0eb64f8974cd1e9615c26cb98c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44309b0eb64f8974cd1e9615c26cb98c">&#9670;&#160;</a></span>handle_input()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handle_input </td>
+          <td>(</td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>key</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Obtener la entrada y convertirla de cadena a valor flotante, para amplitud, frecuencia y desplazamiento. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00195">195</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="ae66f6b31b5ad750f1fe042a706a4e3d4" name="ae66f6b31b5ad750f1fe042a706a4e3d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae66f6b31b5ad750f1fe042a706a4e3d4">&#9670;&#160;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>FunciÃ³n principal del programa. Trabajando solo con llamadas de subrutina de interrupciÃ³n. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00090">90</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="acee10fb61031896f1d6682326b0c29fb" name="acee10fb61031896f1d6682326b0c29fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acee10fb61031896f1d6682326b0c29fb">&#9670;&#160;</a></span>setup_gpio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setup_gpio </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Inicializa cada pin de la Raspberry Pi Pico necesario para producir la seÃ±al. En este caso, inicializa 8 pines de acuerdo con los 8 bits necesarios en el DAC. Mientras los pines estÃ©n en secuencia, estos podrÃ­an inicializarse con un bucle for. AdemÃ¡s, configura el botÃ³n de pulsaciÃ³n con su propio resistor de pull-up. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00106">106</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de variables</h2>
+<a id="aab9449dcb5f496c556d5e32b4d25b7f8" name="aab9449dcb5f496c556d5e32b4d25b7f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab9449dcb5f496c556d5e32b4d25b7f8">&#9670;&#160;</a></span>amplitude</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile float amplitude = 1000.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Establece la amplitud actual en el valor por DEFECTO. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00067">67</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a1de16f317864994318321193fcfa135d" name="a1de16f317864994318321193fcfa135d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1de16f317864994318321193fcfa135d">&#9670;&#160;</a></span>colPins</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint colPins[<a class="el" href="#ab59ad2ee1a48b83c2eef1f019ed8cc48">COLS</a>] = {22, 26, 27, 28}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>DisposiciÃ³n de pines de las columnas (GPIOs) en el RP2040. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00056">56</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a3304bb90581ab3d37b30a65af3d098f5" name="a3304bb90581ab3d37b30a65af3d098f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3304bb90581ab3d37b30a65af3d098f5">&#9670;&#160;</a></span>current_waveform</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile <a class="el" href="#a7d8c79438df26f5d08937a6566cd8ddf">Waveform</a> current_waveform = <a class="el" href="#a7d8c79438df26f5d08937a6566cd8ddfa6fb78345b237d9715b391bff6773e931">SINE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Forma de onda actual producida por la seÃ±al. En esta lÃ­nea, establece la forma de onda de seÃ±al predeterminada como onda sinusoidal. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00066">66</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a0e809c8840905e1882aca5de814d67c9" name="a0e809c8840905e1882aca5de814d67c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e809c8840905e1882aca5de814d67c9">&#9670;&#160;</a></span>dc_offset</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile float dc_offset = 500.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Establece el desplazamiento DC actual en el valor por DEFECTO. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00069">69</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a40f530119a7aefd258a648a199341686" name="a40f530119a7aefd258a648a199341686"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40f530119a7aefd258a648a199341686">&#9670;&#160;</a></span>frequency</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile float frequency = 10.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Establece la frecuencia actual en el valor por DEFECTO. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00068">68</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a9286c2ed3a2d4203185071f7a883cbf9" name="a9286c2ed3a2d4203185071f7a883cbf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9286c2ed3a2d4203185071f7a883cbf9">&#9670;&#160;</a></span>inputBuffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char inputBuffer[20]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00072">72</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a7c2f87177235c413f20dff6782cce9b6" name="a7c2f87177235c413f20dff6782cce9b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c2f87177235c413f20dff6782cce9b6">&#9670;&#160;</a></span>inputIndex</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int inputIndex = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00073">73</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a856e873a1d14012d57ddb813c4a1e40a" name="a856e873a1d14012d57ddb813c4a1e40a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a856e873a1d14012d57ddb813c4a1e40a">&#9670;&#160;</a></span>keys</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char keys[<a class="el" href="#a3cfd3aa62338d12609f6d65bce97e9cd">ROWS</a>][<a class="el" href="#ab59ad2ee1a48b83c2eef1f019ed8cc48">COLS</a>] = {{'1','2','3','A'},{'4','5','6','B'},{'7','8','9','C'},{'*','0','#','D'}}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Matriz 4x4, que contiene cada uno de los caracteres presentes en el diseÃ±o del teclado. El orden de los caracteres debe coincidir con el orden del teclado en sÃ­. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00057">57</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="a55b8f1bdc77969f7a2c3de29778421d4" name="a55b8f1bdc77969f7a2c3de29778421d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55b8f1bdc77969f7a2c3de29778421d4">&#9670;&#160;</a></span>paramType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char paramType = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00071">71</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+<a id="ab3985f14b173986c16ce5517148f5cfb" name="ab3985f14b173986c16ce5517148f5cfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3985f14b173986c16ce5517148f5cfb">&#9670;&#160;</a></span>rowPins</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint rowPins[<a class="el" href="#a3cfd3aa62338d12609f6d65bce97e9cd">ROWS</a>] = {18, 19, 20, 21}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>DisposiciÃ³n de pines de las filas (GPIOs) en el RP2040. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="main_8c_source.html#l00055">55</a> del archivo <a class="el" href="main_8c_source.html">main.c</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0
+</small></address>
+</body>
+</html>
