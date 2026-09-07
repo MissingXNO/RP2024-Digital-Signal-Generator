@@ -1,38 +1,39 @@
 # RP2024 Digital Signal Generator
 
-A digital signal generator implemented on the **Raspberry Pi Pico**, developed in five different programming approaches to compare polling, interrupts, and programming environments in an embedded system.
+A digital signal generator implemented on a **Raspberry Pi Pico (RP2040)** using five different programming approaches:
 
-The project generates **sine, triangular, sawtooth, and square waveforms**, allowing the user to configure amplitude, DC offset, and frequency through a 4×4 matrix keypad. A dedicated pushbutton is used to change the waveform.
+1. Arduino IDE
+2. MicroPython
+3. C with polling
+4. C with interrupts
+5. C with polling + interrupts
 
-The same general application was implemented using:
+The system generates four types of waveforms and allows the user to configure their amplitude, DC offset, and frequency through a 4×4 matrix keypad.
 
-* Arduino IDE
-* MicroPython
-* C with polling
-* C with interrupts
-* C with polling + interrupts
-
-The project was developed as part of **Digital Electronics Laboratory III** at Universidad de Antioquia.
+The project was developed as part of **Laboratorio de Electrónica Digital 3** at Universidad de Antioquia.
 
 ---
 
 ## Overview
 
-The main objective was to develop a functional digital signal generator while comparing different programming approaches for the same embedded application.
+The Digital Signal Generator (DSG) uses a Raspberry Pi Pico to generate configurable electrical waveforms from user-defined parameters.
 
-The system consists of three main stages:
+The available waveforms are:
 
-1. **User interface** — 4×4 keypad and waveform-selection button.
-2. **Signal generation** — waveform calculation and timing according to the selected parameters.
-3. **Output stage** — conversion of the generated digital values into an analog waveform.
+* Sine
+* Triangle
+* Sawtooth
+* Square
 
-The project was also used to evaluate the practical differences between high-level development environments and lower-level C programming, particularly regarding execution control, input handling, and interrupt management.
+The user interacts with the system through a **4×4 matrix keypad** and a dedicated pushbutton for changing the waveform.
+
+The same functional concept was implemented using different programming environments and input-handling techniques in order to compare their behavior, complexity, and performance on the RP2040.
 
 ---
 
-## Main Features
+## Features
 
-* Four selectable waveforms:
+* Four configurable waveforms:
 
   * Sine
   * Triangle
@@ -43,178 +44,194 @@ The project was also used to evaluate the practical differences between high-lev
 * Adjustable frequency
 * 4×4 matrix keypad interface
 * Dedicated waveform-selection button
-* Multiple software implementations
-* Polling and interrupt-driven input handling
-* Digital-to-analog output stage
+* Raspberry Pi Pico / RP2040
+* Multiple programming approaches
 * Serial/USB parameter monitoring in the corresponding implementations
+* External analog output stage
 
 ---
 
 ## Hardware
 
-The project is based on the **Raspberry Pi Pico (RP2040)** and a small external signal-conditioning circuit.
-
-The hardware includes:
+The main hardware used in the project includes:
 
 * Raspberry Pi Pico
 * 4×4 matrix keypad
 * Pushbutton
-* External 8-bit resistor DAC for the Arduino and most C implementations
 * Resistors
 * Capacitor
 * Operational amplifier
-* Signal-conditioning circuitry
-* Oscilloscope for waveform verification
+* Analog output conditioning stage
+* External 8-bit resistor DAC
 
 ### Prototype
 
 <img src="media/protoboard.jpeg" width="480">
 
-### External DAC IC (not used in this case)
+The complete prototype was assembled on a protoboard during development and testing.
+
+### DAC Implementation Options
+
+Two different approaches were considered for converting the Pico's digital output into an analog signal:
+
+* A **dedicated DAC IC**
+* An **8-bit resistor DAC**
+
+These are alternative implementations of the digital-to-analog conversion stage, not circuits used simultaneously.
+
+#### Dedicated DAC IC — Alternative
 
 <img src="media/schematic.jpeg" width="480">
 
-### Simpler 8-bit Resistor DAC (implemented)
+A dedicated DAC IC is a preferable option when better control of the conversion process and improved analog performance are required.
+
+This circuit represents an **alternative hardware implementation** considered for the project. It was **not the DAC implementation used in the final prototype**.
+
+#### 8-bit Resistor DAC — Implemented
 
 <img src="media/DAC_resistors.png" width="480">
 
-The Arduino, C polling, and C polling + interrupts implementations output an 8-bit digital value through **GP0–GP7**, which is converted into an analog voltage using the external resistor DAC.
+The implemented prototype uses an **8-bit resistor-based DAC** connected to the digital output pins of the Raspberry Pi Pico.
 
-The MicroPython implementation uses a different output method: **PWM on GP15**.
+This approach was selected for its simplicity and accessibility during the laboratory implementation.
 
-The interrupt-driven C implementation also differs from the other variants: its current source defines `DAC_PIN` as GP0 and passes the calculated 8-bit value directly to `gpio_put()`. Therefore, its output implementation should not be considered equivalent to the GP0–GP7 parallel DAC used by the other variants.
+For a production-oriented design or an application requiring better-controlled conversion performance, a dedicated DAC IC would be a preferable alternative.
 
 ---
 
 ## Hardware Interface
 
-The main pin configuration used by the Arduino and C implementations is:
+The main pin configuration used by the Arduino, C polling, and C polling + interrupts implementations is:
 
-| Function        | Raspberry Pi Pico pins |
-| --------------- | ---------------------- |
-| 8-bit DAC       | GP0–GP7                |
-| Waveform button | GP16                   |
-| Keypad rows     | GP18–GP21              |
-| Keypad columns  | GP22, GP26–GP28        |
+| Function        | Raspberry Pi Pico GPIO |
+| --------------- | ---------------------: |
+| DAC bit 0       |                    GP0 |
+| DAC bit 1       |                    GP1 |
+| DAC bit 2       |                    GP2 |
+| DAC bit 3       |                    GP3 |
+| DAC bit 4       |                    GP4 |
+| DAC bit 5       |                    GP5 |
+| DAC bit 6       |                    GP6 |
+| DAC bit 7       |                    GP7 |
+| Waveform button |                   GP16 |
+| Keypad row 1    |                   GP18 |
+| Keypad row 2    |                   GP19 |
+| Keypad row 3    |                   GP20 |
+| Keypad row 4    |                   GP21 |
+| Keypad column 1 |                   GP22 |
+| Keypad column 2 |                   GP26 |
+| Keypad column 3 |                   GP27 |
+| Keypad column 4 |                   GP28 |
 
-The MicroPython implementation uses a different keypad configuration and PWM output:
+The eight DAC pins represent the generated sample as an **8-bit digital value**, from 0 to 255.
 
-| Function        | Raspberry Pi Pico pin |
-| --------------- | --------------------- |
-| PWM output      | GP15                  |
-| Waveform button | GP16                  |
-| Keypad columns  | GP2–GP5               |
-| Keypad rows     | GP6–GP9               |
+> **Implementation note:** The C interrupt implementation uses a different DAC/output implementation in its current source code and should not be interpreted as identical to the GP0–GP7 resistor DAC interface described above.
 
 ---
 
-# How It Works
+## How It Works
 
-The user configures the signal through the keypad. The program stores the selected waveform and its parameters, then continuously calculates samples according to the selected waveform equation.
-
-A simplified signal-generation pipeline is:
+The general signal-generation process can be summarized as follows:
 
 ```mermaid
 flowchart LR
-    A[4×4 Keypad] --> B[Parameter Input]
-    C[Waveform Button] --> D[Waveform Selection]
-    B --> E[Signal Parameters]
-    D --> E
-    E --> F[Waveform Calculation]
-    F --> G[Digital Sample]
-    G --> H[Output Stage]
-    H --> I[Analog Waveform]
+    A[User Input] --> B[Parameter Configuration]
+    B --> C[Waveform Calculation]
+    C --> D[Digital Sample]
+    D --> E[8-bit Digital Output]
+    E --> F[Analog Conversion]
+    F --> G[Output Conditioning]
+    G --> H[Generated Signal]
 ```
 
-The generated waveform is represented digitally and converted into an output signal through the corresponding hardware interface.
+The user first selects or modifies the signal parameters. The selected waveform is then calculated digitally, converted into sample values, and sent to the output stage.
+
+Depending on the implementation, user input is handled through polling, interrupts, or a combination of both.
 
 ---
 
 ## Waveforms
 
-The four supported waveform types are:
+The generator supports four waveform types.
 
 ### Sine
 
 <img src="media/sine.jpeg" width="480">
 
+The sine waveform is calculated from the configured amplitude, frequency, and DC offset.
+
 ### Triangle
 
 <img src="media/triangular.jpeg" width="480">
+
+The triangle waveform is generated using a periodic triangular mathematical function.
 
 ### Sawtooth
 
 <img src="media/sawtooth.jpeg" width="480">
 
+The sawtooth waveform is generated from the phase of the signal.
+
 ### Square
 
 <img src="media/square.jpeg" width="480">
 
-The waveform equations and their implementation vary slightly between programming environments, but all five versions implement the same four fundamental waveform types. In fact, these captures correspond to the Arduino implementation.
+The square waveform alternates between its two signal levels according to the waveform phase.
 
 ---
 
 ## User Interface
 
-The 4×4 keypad is used to enter the signal parameters.
+The **4×4 matrix keypad** is used to enter numerical parameters.
 
-The available parameter configuration follows the same general interaction:
+The available configuration process allows the user to modify:
 
-* `A` — configure amplitude
-* `B` — configure frequency
-* `C` — configure DC offset
-* `D` — confirm the entered value
+* Amplitude
+* DC offset
+* Frequency
 
-The dedicated pushbutton cycles through the available waveform types.
+The dedicated pushbutton changes the currently selected waveform.
 
-Typical parameter limits implemented by the programs are:
+The exact input-handling mechanism depends on the implementation:
 
-| Parameter |           Range |
-| --------- | --------------: |
-| Amplitude |     100–2500 mV |
-| DC offset |      50–1250 mV |
-| Frequency | 1–12,000,000 Hz |
-
-The exact defaults and implementation details vary between versions.
+* Arduino: polling
+* MicroPython: keypad polling + button interrupt
+* C polling: polling
+* C interrupts: interrupt-based input handling
+* C polling + interrupts: keypad polling + button interrupt logic
 
 ---
 
 # Software Implementations
 
-The project contains five independent implementations of the same general signal-generator application.
-
-Each implementation focuses on a different programming model.
-
----
+The project contains five implementations of the same general signal-generator concept.
 
 ## 1. Arduino
 
 **Directory:** `DSG_Arduino/`
 
-The Arduino implementation uses the Arduino environment and a traditional **polling-based architecture**.
+The Arduino implementation was developed using the Arduino IDE environment.
 
-The main loop repeatedly:
+It uses polling for both the keypad and waveform-selection button.
 
-1. Scans the keypad.
-2. Processes parameter input.
-3. Checks the waveform-selection button.
-4. Calculates the next waveform sample.
-5. Sends the sample to the output stage.
+### Characteristics
 
-### Architecture
+* Raspberry Pi Pico / RP2040
+* 4×4 keypad
+* Pushbutton polling
+* 8-bit parallel DAC output
+* Four waveform types
+* Serial communication at 115200 baud
+* Approximately 10 samples per waveform cycle
+* Uses `micros()` for timing
+
+### Flowchart
 
 <img src="flowcharts/Arduino.png" width="480">
 
-The implementation uses `micros()` for timing and generates approximately ten digital samples per waveform cycle according to the implemented sampling calculation.
+### Source
 
-The waveform value is scaled to an 8-bit range from `0` to `255` and written to the external DAC through GP0–GP7.
-
-### Default Configuration
-
-* Waveform: sine
-* Amplitude: 100 mV
-* Frequency: 10 Hz
-* DC offset: 50 mV
+`DSG_Arduino/GDSv14.ino`
 
 ---
 
@@ -222,219 +239,224 @@ The waveform value is scaled to an 8-bit range from `0` to `255` and written to 
 
 **Directory:** `DSG_Micropython/`
 
-The MicroPython version was developed using a higher-level programming environment while retaining direct control of the Raspberry Pi Pico peripherals.
+The MicroPython implementation uses a hybrid input architecture.
 
-Unlike the pure polling implementations, this version combines:
+The keypad is continuously scanned through polling, while the waveform-selection button uses a GPIO interrupt.
 
-* **Keypad polling**
-* **Interrupt-based waveform-button handling**
+Unlike the Arduino and the main C implementations, this version generates its output through **PWM on GP15** rather than the 8-bit parallel resistor DAC interface.
 
-### Architecture
+### Characteristics
+
+* MicroPython
+* Keypad polling
+* Button interrupt
+* PWM output on GP15
+* Four waveform types
+* Configurable amplitude
+* Configurable DC offset
+* Configurable frequency
+
+### Flowchart
 
 <img src="flowcharts/MicroPython.png" width="480">
 
-The keypad is scanned periodically while the waveform-selection button is configured with a rising-edge interrupt.
+### Source
 
-The signal output is generated using **PWM on GP15**, rather than the external 8-bit parallel DAC used by the Arduino and most C versions.
-
-Waveform calculations are performed using MicroPython's mathematical functions, and the PWM duty cycle is adjusted according to the calculated waveform value.
-
-### Default Configuration
-
-* Waveform: sine
-* Amplitude: 1000 mV
-* Frequency: 10 Hz
-* DC offset: 500 mV
+`DSG_Micropython/GDS_Micropython.py`
 
 ---
 
-## 3. C — Polling
+## 3. C with Polling
 
 **Directory:** `DSG_C_POL/`
 
-This implementation uses the Raspberry Pi Pico SDK and implements the user interface entirely through **polling**.
+The C polling implementation was developed using the Raspberry Pi Pico SDK.
 
-The main loop continuously handles:
+All user inputs are handled through polling.
 
-1. Keypad scanning
-2. Parameter configuration
-3. Waveform-button polling
-4. Waveform generation
-5. DAC output
+The waveform is calculated and its samples are sent to the external digital output interface.
 
-### Architecture
+### Characteristics
+
+* C
+* Raspberry Pi Pico SDK
+* Keypad polling
+* Button polling
+* 8-bit parallel DAC output through GP0–GP7
+* Four waveform types
+* USB standard I/O enabled
+* Block-based waveform generation
+
+### Flowchart
 
 <img src="flowcharts/C_Polling.png" width="480">
 
-Waveform samples are generated in blocks and converted to an 8-bit value before being written to the external DAC through GP0–GP7.
+### Source
 
-The implementation uses the Pico SDK's timing functions for sample generation and introduces short delays between samples.
+`DSG_C_POL/main.c`
 
 ---
 
-## 4. C — Interrupts
+## 4. C with Interrupts
 
 **Directory:** `DSG_C_INT/`
 
-This version moves user-input handling into GPIO interrupt callbacks.
+This implementation explores interrupt-based input handling.
 
-The waveform-selection button and keypad inputs are configured to generate GPIO interrupts. The callback identifies the input event and processes the corresponding action.
+GPIO interrupts are used for the waveform button and keypad input events.
 
-### Architecture
+This version is structurally different from the polling implementations and was developed to evaluate the added complexity introduced by interrupt-driven control.
+
+### Characteristics
+
+* C
+* Raspberry Pi Pico SDK
+* GPIO interrupts
+* Interrupt-based keypad/button handling
+* Four waveform types
+* USB standard I/O enabled
+* Interrupt callbacks for user input
+
+> **Implementation note:** The current source uses a different DAC/output mechanism from the GP0–GP7 resistor-DAC interface used by the C polling implementation. The README documents the implementation as it currently exists rather than treating the different output mechanisms as equivalent.
+
+### Flowchart
 
 <img src="flowcharts/C_Interrupt.png" width="480">
 
-The main loop is therefore simplified to continuously generate the waveform, while user interaction is handled asynchronously.
+### Source
 
-This implementation demonstrates the increased complexity involved in interrupt-driven embedded programming, particularly with:
-
-* GPIO interrupt configuration
-* Debouncing
-* Shared state
-* `volatile` variables
-* Input processing inside callbacks
-
-### Implementation note
-
-The current implementation differs from the other DAC-based C versions. It defines the DAC output around `GP0` and passes an 8-bit value through `gpio_put()`, rather than explicitly writing the eight DAC bits across GP0–GP7.
+`DSG_C_INT/main.c`
 
 ---
 
-## 5. C — Polling + Interrupts
+## 5. C with Polling + Interrupts
 
 **Directory:** `DSG_C_INT_POL/`
 
-The final implementation combines both programming approaches.
+This implementation combines both input-handling techniques.
 
-The intended architecture is:
+The waveform-selection button is handled through interrupt logic, while the keypad continues to be handled through polling.
 
-* **Interrupts** for the waveform-selection button
-* **Polling** for the keypad
-* Continuous waveform generation in the main loop
+The implementation also retains polling logic for the button in the main program flow.
 
-### Architecture
+### Characteristics
+
+* C
+* Raspberry Pi Pico SDK
+* Keypad polling
+* Interrupt-based button logic
+* Button handling present in both interrupt and polling paths
+* 8-bit parallel DAC output through GP0–GP7
+* Four waveform types
+* USB standard I/O enabled
+* Block-based waveform generation
+
+### Flowchart
 
 <img src="flowcharts/C_polling_interrupt.png" width="480">
 
-This approach attempts to combine the simpler keypad-management model of polling with the asynchronous response provided by interrupts for the dedicated waveform button.
+### Source
 
-The implementation also contains a polling check for the waveform button in the main loop in addition to its interrupt callback, so the current source should be regarded as a hybrid implementation rather than a purely interrupt-driven button path.
-
----
-
-# Implementation Comparison
-
-The five versions provide the same overall application while exposing important differences in software architecture.
-
-| Implementation         | Environment  | Keypad     | Waveform Button           | Output                   |
-| ---------------------- | ------------ | ---------- | ------------------------- | ------------------------ |
-| Arduino                | Arduino IDE  | Polling    | Polling                   | 8-bit parallel DAC       |
-| MicroPython            | MicroPython  | Polling    | Interrupt                 | PWM                      |
-| C Polling              | Pico SDK / C | Polling    | Polling                   | 8-bit parallel DAC       |
-| C Interrupts           | Pico SDK / C | Interrupts | Interrupt                 | GP0-based implementation |
-| C Polling + Interrupts | Pico SDK / C | Polling    | Interrupt + polling check | 8-bit parallel DAC       |
-
-The main educational difference is not the waveform mathematics itself, but **how the processor manages user input and timing while maintaining continuous signal generation**.
+`DSG_C_INT_POL/main.c`
 
 ---
 
-# Experimental Results
+## Implementation Comparison
 
-The laboratory work compared the five implementations in terms of development difficulty, execution performance, and resource usage.
+The project allows the different programming approaches to be compared under the same general application.
 
-The following results correspond to the experimental observations reported during the project.
+| Implementation         | Input handling                    | Output approach                        | Reported difficulty |
+| ---------------------- | --------------------------------- | -------------------------------------- | ------------------: |
+| Arduino                | Polling                           | 8-bit digital output                   |                8/10 |
+| MicroPython            | Keypad polling + button interrupt | PWM                                    |                7/10 |
+| C Polling              | Polling                           | 8-bit digital output                   |                7/10 |
+| C Interrupts           | Interrupts                        | Current implementation-specific output |                4/10 |
+| C Polling + Interrupts | Polling + interrupts              | 8-bit digital output                   |                3/10 |
 
-| Implementation           | Reported difficulty | Reported maximum frequency |
-| ------------------------ | ------------------: | -------------------------: |
-| Arduino / Polling        |              8 / 10 |                    ~10 kHz |
-| MicroPython              |              7 / 10 |                     ~1 kHz |
-| C / Polling              |              7 / 10 |                    ~10 kHz |
-| C / Interrupts           |              4 / 10 |                    ~10 kHz |
-| C / Polling + Interrupts |              3 / 10 |                    ~10 kHz |
+The difficulty rating follows the laboratory report, where **1 represents the hardest implementation and 10 the easiest**.
 
-The difficulty scale used in the laboratory report ranges from **1 (more difficult)** to **10 (easier)**.
+The results illustrate the trade-off between simplicity and low-level control:
 
-These frequency values are **experimental results from the laboratory implementation**, rather than guaranteed hardware limits. The actual achievable frequency depends on the implementation, waveform calculation, output method, timing strategy, and measurement conditions.
-
-A separate observation from the C polling implementation reached approximately **16 kHz** during waveform visualization.
-
----
-
-## Reported Program Size and Memory
-
-The laboratory report also recorded the following approximate resource values:
-
-| Implementation           | Reported program size | Estimated RAM |
-| ------------------------ | --------------------: | ------------: |
-| Arduino / Polling        |                 14 kB |         ~2 kB |
-| MicroPython              |                  7 kB |         ~8 kB |
-| C / Polling              |               5.99 MB |       ~1.5 kB |
-| C / Interrupts           |               6.73 MB |         ~2 kB |
-| C / Polling + Interrupts |               7.92 MB |         ~3 kB |
-
-These values are preserved from the laboratory measurements and should **not be interpreted as directly comparable executable-memory footprints** across the different toolchains. Build artifacts, generated files, runtime environments, and measurement methodology differ substantially between Arduino, MicroPython, and the Pico C SDK.
+* Arduino provides a relatively accessible development environment.
+* MicroPython simplifies software development but introduces additional runtime overhead.
+* C provides lower-level control of the RP2040.
+* Interrupt-based implementations introduce additional complexity.
+* Combining polling and interrupts increases architectural complexity but provides a more flexible event-handling approach.
 
 ---
 
-# Key Takeaways
+## Experimental Results
 
-The project demonstrated several practical differences between programming approaches for embedded systems.
+The following results were reported during laboratory testing.
 
-### Polling
+| Implementation         | Difficulty | Experimental maximum frequency |
+| ---------------------- | ---------: | -----------------------------: |
+| Arduino                |       8/10 |                        ~10 kHz |
+| MicroPython            |       7/10 |                         ~1 kHz |
+| C Polling              |       7/10 |                        ~10 kHz |
+| C Interrupts           |       4/10 |                        ~10 kHz |
+| C Polling + Interrupts |       3/10 |                        ~10 kHz |
 
-Polling is straightforward to understand and implement. The main loop explicitly checks the state of each input, making the program flow easy to follow.
+An additional observation during visualization reported approximately **16 kHz** for the C polling implementation under a specific test condition.
 
-Its main limitation is that input handling and signal generation share the same execution path.
+These values are **experimental results from the laboratory implementation**, not guaranteed maximum frequencies of the Raspberry Pi Pico or of the programming languages themselves.
 
-### Interrupts
+### Reported RAM Usage
 
-Interrupts allow external events to be handled asynchronously, reducing the need for continuous input checking in the main loop.
+The laboratory report also included approximate RAM usage measurements:
 
-However, this approach introduces additional complexity related to:
+| Implementation         | Approximate RAM usage |
+| ---------------------- | --------------------: |
+| Arduino                |                 ~2 kB |
+| MicroPython            |                 ~8 kB |
+| C Polling              |               ~1.5 kB |
+| C Interrupts           |                 ~2 kB |
+| C Polling + Interrupts |                 ~3 kB |
 
-* Interrupt configuration
-* Debouncing
-* Shared variables
-* Callback execution
-* Synchronization between the interrupt handler and the main program
-
-### Hybrid Approach
-
-Combining polling and interrupts provides a compromise between the simplicity of polling and the responsiveness of interrupt-driven events.
-
-In this project, the hybrid C implementation was also the most complex from a development perspective, illustrating that combining programming models requires careful control of program state and event handling.
-
-### High-Level vs. Low-Level Environments
-
-Arduino and MicroPython simplify peripheral configuration and application development, while C with the Pico SDK provides more explicit control over the RP2040 hardware.
-
-MicroPython offered the simplest high-level development experience but showed lower experimental maximum frequency in the laboratory implementation.
-
-C required more development effort, particularly for interrupt-based architectures, but provided greater control over GPIO handling and timing.
+These values should be interpreted as **approximate experimental measurements reported for the implementations**, rather than a complete characterization of the runtime memory footprint.
 
 ---
 
-# Repository Structure
+## Key Takeaways
+
+This project demonstrates how the same embedded application can be implemented using substantially different programming approaches.
+
+### Arduino
+
+Arduino provides a simple development environment and relatively straightforward hardware interaction, making it suitable for rapid implementation.
+
+### MicroPython
+
+MicroPython reduces development complexity and allows rapid experimentation, but its interpreted runtime results in lower experimentally observed signal-generation performance compared with the C implementations.
+
+### C
+
+The C implementations provide more direct control over the RP2040 hardware and allow the use of lower-level mechanisms such as GPIO interrupts.
+
+### Polling vs. Interrupts
+
+Polling is simpler to understand and implement, while interrupts allow the processor to respond to external events without continuously checking the corresponding input.
+
+The laboratory results show that interrupt-based implementations require greater development complexity, particularly when combined with other event-handling mechanisms.
+
+---
+
+## Repository Structure
 
 ```text
 RP2024-Digital-Signal-Generator/
 │
 ├── DSG_Arduino/
-│   ├── GDSv14.ino
-│   └── doc/
+│   └── GDSv14.ino
 │
 ├── DSG_Micropython/
-│   ├── GDS_Micropython.py
-│   ├── Doxyfile
-│   ├── doxygen_log.txt
-│   └── Salida/
+│   └── GDS_Micropython.py
 │
 ├── DSG_C_POL/
 │   ├── main.c
 │   ├── CMakeLists.txt
 │   ├── pico_sdk_import.cmake
 │   ├── build/
-│   ├── .vscode/
 │   └── doc/
 │
 ├── DSG_C_INT/
@@ -442,7 +464,6 @@ RP2024-Digital-Signal-Generator/
 │   ├── CMakeLists.txt
 │   ├── pico_sdk_import.cmake
 │   ├── build/
-│   ├── .vscode/
 │   ├── doc/
 │   └── doc_doxy/
 │
@@ -451,15 +472,14 @@ RP2024-Digital-Signal-Generator/
 │   ├── CMakeLists.txt
 │   ├── pico_sdk_import.cmake
 │   ├── build/
-│   ├── .vscode/
 │   └── doc/
 │
 ├── flowcharts/
 │   ├── Arduino.png
+│   ├── MicroPython.png
 │   ├── C_Interrupt.png
 │   ├── C_Polling.png
-│   ├── C_polling_interrupt.png
-│   └── MicroPython.png
+│   └── C_polling_interrupt.png
 │
 ├── media/
 │   ├── DAC_resistors.png
@@ -470,37 +490,33 @@ RP2024-Digital-Signal-Generator/
 │   ├── square.jpeg
 │   └── triangular.jpeg
 │
-├── .gitignore
-├── LICENSE
 └── README.md
 ```
 
 ---
 
-# Documentation
+## Documentation
 
-Each implementation contains its own source code and, where applicable, generated documentation.
+The complete laboratory report contains the theoretical background, hardware description, implementation details, development obstacles, experimental results, and conclusions associated with the project.
 
-The `flowcharts/` directory contains the high-level execution flow of each programming approach, while `media/` contains the hardware and waveform images used throughout this README.
-
-The complete laboratory analysis, theoretical background, implementation discussion, and experimental comparison are documented in the corresponding laboratory report.
+The repository also includes flowcharts for each implementation and images documenting the hardware prototype and generated waveforms.
 
 ---
 
-# References
+## References
 
-The project was developed within the context of Digital Electronics Laboratory III and was supported by the following references:
+The project documentation was developed using the following references:
 
-* Monk, S. — *Programming Arduino: Getting Started with Sketches*, 2nd Edition.
-* Mazidi, M. A. et al. — *The AVR Microcontroller and Embedded Systems: Using Assembly and C*.
-* Horowitz, P. & Hill, W. — *The Art of Electronics*, 3rd Edition.
-* Williams, T. — *The Circuit Designer's Companion*.
-* Catsoulis, J. — *Designing Embedded Hardware*.
+1. Monk, S. (2014). *Programming Arduino: Getting Started with Sketches* (2nd ed.).
+2. Mazidi, M. A., Naimi, S., & Naimi, S. (2010). *The AVR Microcontroller and Embedded Systems: Using Assembly and C*.
+3. Horowitz, P., & Hill, W. (2015). *The Art of Electronics* (3rd ed.).
+4. Williams, T. *The Circuit Designer's Companion*.
+5. Catsoulis, J. (2005). *Designing Embedded Hardware*.
 
 ---
 
-# License
+## License
 
-This project is distributed under the **MIT License**.
+This project is released under the MIT License.
 
-See the [LICENSE](LICENSE) file for the complete license text.
+See `LICENSE` for the complete license text.
