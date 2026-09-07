@@ -1,4 +1,4 @@
-# RP2024 Digital Signal Generator
+# RP2040 Digital Signal Generator
 
 A digital signal generator implemented on a **Raspberry Pi Pico (RP2040)** using five different programming approaches:
 
